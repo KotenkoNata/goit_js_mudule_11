@@ -1,43 +1,36 @@
-import './styles.css';
-import menuItem from './menu.json';
-import galerryItem from './templates/items.hbs';
+import "./styles.css";
 
-const menuContainer = document.querySelector('.js-menu');
+const colors = [
+  "#FFFFFF",
+  "#2196F3",
+  "#4CAF50",
+  "#FF9800",
+  "#009688",
+  "#795548",
+];
 
-const cardMarkup = createMenuItemCards(menuItem);
-
-menuContainer.insertAdjacentHTML('beforeend', cardMarkup);
-
-function createMenuItemCards(menuItem) {
-  return menuItem.map(galerryItem).join('');
-}
-
-const Theme = {
-  LIGHT: 'light-theme',
-  DARK: 'dark-theme',
+const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const toggle = document.querySelector('#theme-switch-toggle');
-const body = document.querySelector('body');
+const refs = {
+  startBtn: document.querySelector("button[data-action=start]"),
+  stopBtn: document.querySelector("button[data-action=stop]"),
+};
 
-toggle.addEventListener('change', changeTheme);
-
-const valueOfLocalStorage = localStorage.getItem('Theme');
-if (valueOfLocalStorage === Theme.DARK) {
-  body.classList.add(Theme.DARK);
-  body.classList.remove(Theme.LIGHT);
-  // add checked
-  toggle.checked = true;
+function changeBodyColor() {
+  const colorIndex = randomIntegerFromInterval(0, colors.length - 1);
+  const color = colors[colorIndex];
+  document.body.style.background = color;
 }
 
-function changeTheme(event) {
-  if (localStorage.getItem('Theme') === Theme.DARK) {
-    body.classList.remove(Theme.DARK);
-    body.classList.add(Theme.LIGHT);
-    localStorage.setItem('Theme', Theme.LIGHT);
-  } else {
-    body.classList.remove(Theme.LIGHT);
-    body.classList.add(Theme.DARK);
-    localStorage.setItem('Theme', Theme.DARK);
-  }
-}
+let timer = null;
+refs.startBtn.addEventListener("click", function (event) {
+  event.target.disabled = true;
+  timer = setInterval(changeBodyColor, 1000);
+});
+
+refs.stopBtn.addEventListener("click", function () {
+  refs.startBtn.disabled = false;
+  clearInterval(timer);
+});
