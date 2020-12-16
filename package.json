@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KotenkoNata/goit_js_module_10.git"
+    "url": "git+https://github.com/KotenkoNata/goit_js_mudule_11_color-switch.git"
   },
   "keywords": [],
   "author": "Nataliia Kotenko <kotenkonata8@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KotenkoNata/goit_js_module_10/issues"
+    "url": "https://github.com/KotenkoNata/goit_js_mudule_11_color-switch/issues"
   },
-  "homepage": "https://KotenkoNata.github.io/goit_js_module_10",
+  "homepage": "https://KotenkoNata.github.io/goit_js_mudule_11_color-switch",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
